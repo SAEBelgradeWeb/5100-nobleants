@@ -1,14 +1,11 @@
 <?php
-require 'functions.php';
-require 'Task.php';
 
-$pdo = connectDb();
 
-$tasks = getAll('tasks', $pdo);
+$query = require "core/bootstrap.php";
 
-$tasks[0]->complete();
+Router::load("routes.php")->direct(Request::prepare());
 
-//TODO: Something
 
-require 'index.view.php';
+
+
 
