@@ -3,7 +3,7 @@
 
 $query = require "core/bootstrap.php";
 
-Router::load("routes.php")->direct(Request::prepare());
+Router::load("routes.php")->direct(Request::prepare(), Request::method(), $app);
 
 
 

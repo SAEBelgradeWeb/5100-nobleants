@@ -2,7 +2,10 @@
 
 class Router
 {
-    public $routes = [];
+    public $routes = [
+        'GET' => [],
+        'POST' => []
+    ];
 
     public static function load($file)
     {
@@ -10,13 +13,20 @@ class Router
         require $file;
         return $router;
     }
-    public function register($routes) {
-        $this->routes = $routes;
+
+    public function get($route, $controller)
+    {
+        $this->routes['GET'][$route] = $controller;
     }
 
-    public function direct($uri) {
-        if(array_key_exists($uri, $this->routes)) {
-            require $this->routes[$uri];
+    public function post($route, $controller)
+    {
+        $this->routes['POST'][$route] = $controller;
+    }
+
+    public function direct($uri, $requestMethod, $app) {
+        if(array_key_exists($uri, $this->routes[$requestMethod])) {
+            require $this->routes[$requestMethod][$uri];
         } else {
             require "views/404.view.php";
         }
