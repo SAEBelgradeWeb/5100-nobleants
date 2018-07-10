@@ -10,3 +10,13 @@ function dd($data) {
     echo "</pre>";
     die;
 }
+
+
+function view($file, $data = []) {
+    extract($data);
+    require "views/{$file}.view.php";
+}
+
+function redirect($path) {
+    header("Location: {$path}");
+}
