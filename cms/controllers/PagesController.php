@@ -1,10 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Web Server
- * Date: 7/10/2018
- * Time: 5:23 PM
- */
+
+namespace App\Controllers;
+
+use App\Core\App;
 
 class PagesController
 {
@@ -30,5 +28,12 @@ class PagesController
     {
         App::get('database')->addNew("tasks", $_POST);
         return redirect('/');
+    }
+
+    public function products()
+    {
+        $products = App::get('database')->getAll("products");
+
+        return view('products', compact('products'));
     }
 }

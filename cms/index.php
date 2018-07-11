@@ -3,7 +3,9 @@
 require "vendor/autoload.php";
 $query = require "core/bootstrap.php";
 
-Router::load("routes.php")->direct(Request::prepare(), Request::method());
+use \App\Core\Request;
+
+\App\Core\Router::load("routes.php")->direct(Request::prepare(), Request::method());
 
 
 

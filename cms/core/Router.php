@@ -1,4 +1,6 @@
 <?php
+namespace App\Core;
+
 
 class Router
 {
@@ -25,6 +27,7 @@ class Router
     }
 
     public function direct($uri, $requestMethod) {
+
         if(array_key_exists($uri, $this->routes[$requestMethod])) {
 
             $this->callAction(...explode('@', $this->routes[$requestMethod][$uri]));
@@ -38,10 +41,11 @@ class Router
     }
 
     public function callAction($controller, $method) {
-        $c = new $controller;
+        $c = "\\App\\Controllers\\{$controller}";
+        $c = new $c;
 
         if(!method_exists($c, $method)) {
-            throw new Exception('No method');
+            throw new \Exception('No method');
         }
         return $c->$method();
     }

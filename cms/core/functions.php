@@ -13,6 +13,7 @@ function dd($data) {
 
 
 function view($file, $data = []) {
+    $file = str_replace('.', '/', $file);
     extract($data);
     require "views/{$file}.view.php";
 }
