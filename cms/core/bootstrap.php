@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use App\Core\App;
 use App\Database\Connection;
 use App\Database\QueryBuilder;
